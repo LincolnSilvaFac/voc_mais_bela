@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você Mais Bela - Salão de Beleza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(251, 113, 133, 0.1), rgba(251, 113, 133, 0.2));
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(251, 113, 133, 0.9) 0%, rgba(225, 29, 72, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card:hover * {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card:hover .service-icon {
+            background: white;
+            color: #fb7185;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect border-b border-pink-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex items-center">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-rose-400 mr-2"></i>
+                        <span class="font-serif text-2xl font-bold text-gray-800">Você Mais Bela</span>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#inicio" class="text-gray-700 hover:text-rose-500 transition-colors font-medium">Início</a>
+                        <a href="#sobre" class="text-gray-700 hover:text-rose-500 transition-colors font-medium">Sobre</a>
+                        <a href="#servicos" class="text-gray-700 hover:text-rose-500 transition-colors font-medium">Serviços</a>
+                        <a href="#galeria" class="text-gray-700 hover:text-rose-500 transition-colors font-medium">Galeria</a>
+                        <a href="#contato" class="px-6 py-2 bg-rose-400 text-white rounded-full hover:bg-rose-500 transition-colors font-medium">Agendar</a>
+                    </div>
+                    <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect border-b border-pink-100">
+            <div class="px-4 pt-2 pb-3 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 text-gray-700 hover:text-rose-500">Início</a>
+                <a href="#sobre" class="block px-3 py-2 text-gray-700 hover:text-rose-500">Sobre</a>
+                <a href="#servicos" class="block px-3 py-2 text-gray-700 hover:text-rose-500">Serviços</a>
+                <a href="#galeria" class="block px-3 py-2 text-gray-700 hover:text-rose-500">Galeria</a>
+                <a href="#contato" class="block px-3 py-2 text-rose-500 font-medium">Agendar Agora</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="min-h-screen flex items-center pt-20 hero-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 space-y-8">
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-pink-100">
+                        <i data-lucide="star" class="w-4 h-4 text-rose-400 mr-2 fill-rose-400"></i>
+                        <span class="text-sm text-gray-600">Experiência Premium em Beleza</span>
+                    </div>
+                    <h1 class="font-serif text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+                        Realce sua <br>
+                        <span class="gradient-text">Beleza Natural</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+                        Transforme seu visual com nossos tratamentos exclusivos. No Você Mais Bela, cada detalhe é pensado para você se sentir única e confiante.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contato" class="px-8 py-4 bg-rose-400 text-white rounded-full font-medium hover:bg-rose-500 transition-all hover:shadow-lg text-center">
+                            Agende seu Horário
+                        </a>
+                        <a href="#servicos" class="px-8 py-4 border-2 border-rose-400 text-rose-400 rounded-full font-medium hover:bg-rose-50 transition-all text-center">
+                            Conheça Nossos Serviços
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-8 pt-4">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-gray-900">15+</p>
+                            <p class="text-sm text-gray-500">Anos de Experiência</p>
+                        </div>
+                        <div class="w-px h-12 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-gray-900">5k+</p>
+                            <p class="text-sm text-gray-500">Clientes Satisfeitas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full blur-3xl opacity-30"></div>
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=800&fit=crop" 
+                         alt="Salão de Beleza" 
+                         class="relative rounded-3xl shadow-2xl w-full h-[600px] object-cover hover-lift">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
+                                <i data-lucide="clock" class="w-6 h-6 text-rose-500"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Horário de Funcionamento</p>
+                                <p class="font-semibold text-gray-900">Seg-Sáb: 9h às 19h</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                            <span class="font-bold text-gray-900">4.9</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Google Reviews</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=500&fit=crop" 
+                             class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Cabelo">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&h=500&fit=crop" 
+                             class="rounded-2xl shadow-lg w-full h-64 object-cover mt-8" alt="Maquiagem">
+                        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=500&fit=crop" 
+                             class="rounded-2xl shadow-lg w-full h-64 object-cover -mt-8" alt="Unhas">
+                        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&h=500&fit=crop" 
+                             class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Spa">
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h2 class="font-serif text-4xl font-bold text-gray-900">
+                        Sobre Nosso <span class="text-rose-400">Salão</span>
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        O Você Mais Bela nasceu da paixão pela transformação e bem-estar. Há mais de 15 anos, nossa missão é realçar a beleza única de cada mulher, proporcionando momentos de cuidado e autoestima.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Com uma equipe de profissionais altamente qualificados e produtos de alta qualidade, oferecemos uma experiência completa de beleza, onde cada cliente é tratada de forma única e especial.
+                    </p>
+                    <div class="grid grid-cols-3 gap-8 pt-6">
+                        <div class="text-center">
+                            <div class="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="award" class="w-7 h-7 text-rose-500"></i>
+                            </div>
+                            <p class="font-semibold text-gray-900">Certificados</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="leaf" class="w-7 h-7 text-rose-500"></i>
+                            </div>
+                            <p class="font-semibold text-gray-900">Produtos Orgânicos</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-14 h-14 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i data-lucide="shield-check" class="w-7 h-7 text-rose-500"></i>
+                            </div>
+                            <p class="font-semibold text-gray-900">Ambiente Seguro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">
+                    Nossos <span class="text-rose-400">Serviços</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Oferecemos uma ampla gama de serviços de beleza para cuidar de você do topo aos pés.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm cursor-pointer relative overflow-hidden group transition-all">
+                    <div class="service-icon w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-4 transition-all">
+                        <i data-lucide="scissors" class="w-8 h-8 text-rose-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-white">Cabelo</h3>
+                    <p class="text-gray-600 text-sm group-hover:text-white/90">Cortes, coloração, tratamentos capilares e penteados para todas as ocasiões.</p>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm cursor-pointer relative overflow-hidden group">
+                    <div class="service-icon w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-4 transition-all">
+                        <i data-lucide="face" class="w-8 h-8 text-rose-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Maquiagem</h3>
+                    <p class="text-gray-600 text-sm">Maquiagem profissional para eventos, casamentos e produções especiais.</p>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm cursor-pointer relative overflow-hidden group">
+                    <div class="service-icon w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-4 transition-all">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-rose-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Unhas</h3>
+                    <p class="text-gray-600 text-sm">Manicure, pedicure, unhas em gel e nail art personalizada.</p>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-2xl shadow-sm cursor-pointer relative overflow-hidden group">
+                    <div class="service-icon w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-4 transition-all">
+                        <i data-lucide="heart" class="w-8 h-8 text-rose-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Estética</h3>
+                    <p class="text-gray-600 text-sm">Limpeza de pele, massagens, depilação e tratamentos faciais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">
+                    Nossa <span class="text-rose-400">Galeria</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Confira alguns dos trabalhos realizados em nosso salão.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square">
+                    <img src="http://static.photos/cosmetic/400x400/1" alt="Trabalho 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Maquiagem Glam</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square md:col-span-2">
+                    <img src="http://static.photos/people/800x400/2" alt="Trabalho 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Transformação Capilar</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square md:col-span-2">
+                    <img src="http://static.photos/cosmetic/800x400/3" alt="Trabalho 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Cuidados com a Pele</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square">
+                    <img src="http://static.photos/nature/400x400/4" alt="Trabalho 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Nail Art</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square">
+                    <img src="http://static.photos/minimal/400x400/5" alt="Trabalho 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Penteado Festa</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square">
+                    <img src="http://static.photos/people/400x400/6" alt="Trabalho 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Coloração</span>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square">
+                    <img src="http://static.photos/workspace/400x400/7" alt="Trabalho 7" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Spa Day</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-rose-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gray-900 mb-4">
+                    O que Nossas <span class="text-rose-400">Clientes</span> Dizem
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"O melhor salão que já frequentei! A equipe é super profissional e atenciosa. Saio sempre me sentindo uma diva!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="http://static.photos/people/100x100/10" alt="Cliente" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">Mariana Silva</p>
+                            <p class="text-sm text-gray-500">Cliente há 3 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Fiz meu cabelo e maquiagem para o casamento e foi simplesmente perfeito! Eles entenderam exatamente o que eu queria."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="http://static.photos/people/100x100/11" alt="Cliente" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">Ana Carolina</p>
+                            <p class="text-sm text-gray-500">Noiva</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Ambiente acolhedor, produtos de qualidade e profissionais que realmente entendem do assunto. Super recomendo!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="http://static.photos/people/100x100/12" alt="Cliente" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900">Julia Mendes</p>
+                            <p class="text-sm text-gray-500">Cliente VIP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento Section -->
+    <section id="agendamento" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="font-serif text-4xl font-bold text-gray-900 mb-6">
+                        Sistema de <span class="text-rose-400">Agendamento</span>
+                    </h2>
+                    <p class="text-gray-600 mb-8">
+                        Escolha a data, horário e serviço desejado. É rápido, fácil e você recebe a confirmação imediata.
+                    </p>
+                    
+                    <!-- Agendamentos Confirmados -->
+                    <div id="meus-agendamentos" class="hidden">
+                        <h3 class="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                            <i data-lucide="calendar-check" class="w-5 h-5 text-rose-500"></i>
+                            Meus Agendamentos
+                        </h3>
+                        <div id="lista-agendamentos" class="space-y-3">
+                            <!-- Agendamentos serão inseridos aqui via JS -->
+                        </div>
+                    </div>
+
+                    <div id="info-contato-agendamento" class="space-y-6 mt-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-rose-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Endereço</p>
+                                <p class="text-gray-600">Rua da Beleza, 123 - Centro, São Paulo/SP</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center">
+                                <i data-lucide="phone" class="w-6 h-6 text-rose-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Telefone</p>
+                                <p class="text-gray-600">(11) 99999-9999</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <form id="form-agendamento" class="space-y-6">
+                        <!-- Dados Pessoais -->
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nome completo</label>
+                                <input type="text" id="nome" required placeholder="Seu nome" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
+                                <input type="tel" id="telefone" required placeholder="(11) 99999-9999" maxlength="15" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                            <input type="email" id="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100">
+                        </div>
+
+                        <!-- Seleção de Serviço -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Serviço desejado</label>
+                            <select id="servico" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100 bg-white">
+                                <option value="">Selecione o serviço</option>
+                                <option value="corte-tintura">Corte + Tintura</option>
+                                <option value="escova">Escova Modelada</option>
+                                <option value="maquiagem">Maquiagem</option>
+                                <option value="manicure-pedicure">Manicure + Pedicure</option>
+                                <option value="unhas-gel">Unhas em Gel</option>
+                                <option value="limpeza-pele">Limpeza de Pele</option>
+                                <option value="massagem">Massagem Relaxante</option>
+                                <option value="spa-day">Spa Day Completo</option>
+                            </select>
+                        </div>
+
+                        <!-- Seleção de Data -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Data do agendamento</label>
+                            <input type="date" id="data" required min="" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100 bg-white">
+                        </div>
+
+                        <!-- Seleção de Horário -->
+                        <div id="horario-container" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Horário disponível</label>
+                            <div id="horarios-grid" class="grid grid-cols-4 gap-2">
+                                <!-- Horários serão inseridos via JS -->
+                            </div>
+                            <input type="hidden" id="horario-selecionado" required>
+                            <p id="erro-horario" class="text-red-500 text-sm mt-2 hidden">Por favor, selecione um horário</p>
+                        </div>
+
+                        <!-- Observações -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Observações (opcional)</label>
+                            <textarea id="observacoes" placeholder="Alguma informação importante..." rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-agendar" class="w-full py-4 bg-rose-400 text-white rounded-xl font-medium hover:bg-rose-500 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                            <i data-lucide="calendar-plus" class="w-5 h-5"></i>
+                            Confirmar Agendamento
+                        </button>
+                    </form>
+
+                    <!-- Confirmação -->
+                    <div id="confirmacao-agendamento" class="hidden text-center py-8">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check-circle" class="w-10 h-10 text-green-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Agendamento Confirmado!</h3>
+                        <p class="text-gray-600 mb-4">Enviamos os detalhes para seu e-mail.</p>
+                        <div id="resumo-agendamento" class="bg-white p-6 rounded-xl text-left space-y-2 mb-6">
+                            <!-- Resumo será inserido aqui -->
+                        </div>
+                        <button onclick="novoAgendamento()" class="px-6 py-3 bg-rose-400 text-white rounded-xl font-medium hover:bg-rose-500 transition-colors">
+                            Fazer Novo Agendamento
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-4 right-4 bg-gray-900 text-white px-6 py-4 rounded-xl shadow-lg transform translate-y-full opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+            <i data-lucide="info" class="w-5 h-5"></i>
+            <span id="toast-mensagem"></span>
+        </div>
+    </section>
+
+    <!-- Contact Section (antiga) -->
+    <section id="contato" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-3xl font-bold text-gray-900 mb-4">Dúvidas?</h2>
+            <p class="text-gray-600 mb-8">Entre em contato conosco pelo WhatsApp ou Instagram</p>
+            <div class="flex justify-center gap-4">
+                <a href="https://api.whatsapp.com/send?phone=5585994168041" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-green-500 text-white rounded-full font-medium hover:bg-green-600 transition-colors flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    WhatsApp
+                </a>
+                <a href="https://instagram.com/vocemaisbelaestetica" target="_blank" class="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-rose-400 mr-2"></i>
+                        <span class="font-serif text-xl font-bold">Você Mais Bela</span>
+                    </div>
+                    <p class="text-gray-400 mb-4 max-w-sm">
+                        Transformando vidas através da beleza há mais de 15 anos. Venha conhecer nosso espaço e se sentir ainda mais bela.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://instagram.com/vocemaisbelaestetica" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-400 transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-400 transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-400 transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#inicio" class="hover:text-rose-400 transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-rose-400 transition-colors">Sobre</a></li>
+                        <li><a href="#servicos" class="hover:text-rose-400 transition-colors">Serviços</a></li>
+                        <li><a href="#galeria" class="hover:text-rose-400 transition-colors">Galeria</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Horário</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Seg - Sex: 9h às 19h</li>
+                        <li>Sábado: 9h às 18h</li>
+                        <li>Domingo: Fechado</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Você Mais Bela. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // ========= SISTEMA DE AGENDAMENTO =========
+        
+        // Configurar data mínima (amanhã)
+        const dataInput = document.getElementById('data');
+        const amanha = new Date();
+        amanha.setDate(amanha.getDate() + 1);
+        dataInput.min = amanha.toISOString().split('T')[0];
+
+        // Horários disponíveis
+        const horarios = [
+            '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', 
+            '16:00', '16:30', '17:00', '17:30', '18:00'
+        ];
+
+        // Horários já agendados (simulado com localStorage)
+        let agendamentosSalvos = JSON.parse(localStorage.getItem('agendamentos') || '[]');
+
+        // Mostrar/ocultar horários quando data mudar
+        dataInput.addEventListener('change', function() {
+            const dataSelecionada = this.value;
+            const container = document.getElementById('horario-container');
+            const grid = document.getElementById('horarios-grid');
+            
+            if (!dataSelecionada) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            container.classList.remove('hidden');
+            grid.innerHTML = '';
+            
+            // Filtrar horários já agendados para esta data
+            const horariosOcupados = agendamentosSalvos
+                .filter(a => a.data === dataSelecionada)
+                .map(a => a.horario);
+
+            horarios.forEach(horario => {
+                const btn = document.createElement('button');
+                const ocupado = horariosOcupados.includes(horario);
+                
+                btn.type = 'button';
+                btn.textContent = horario;
+                btn.disabled = ocupado;
+                btn.className = `py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                    ocupado 
+                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                        : 'bg-white border border-gray-200 text-gray-700 hover:border-rose-400 hover:text-rose-500'
+                }`;
+                
+                if (!ocupado) {
+                    btn.onclick = () => selecionarHorario(horario, btn);
+                }
+                
+                grid.appendChild(btn);
+            });
+        });
+
+        function selecionarHorario(horario, btn) {
+            // Remove seleção anterior
+            document.querySelectorAll('#horarios-grid button').forEach(b => {
+                if (!b.disabled) {
+                    b.classList.remove('bg-rose-400', 'text-white', 'border-rose-400');
+                    b.classList.add('bg-white', 'text-gray-700');
+                }
+            });
+            
+            // Adiciona seleção ao botão clicado
+            btn.classList.remove('bg-white', 'text-gray-700');
+            btn.classList.add('bg-rose-400', 'text-white', 'border-rose-400');
+            
+            document.getElementById('horario-selecionado').value = horario;
+            document.getElementById('erro-horario').classList.add('hidden');
+        }
+
+        // Máscara de telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let valor = e.target.value.replace(/\D/g, '');
+            if (valor.length > 11) valor = valor.slice(0, 11);
+            
+            if (valor.length > 2) {
+                valor = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+            }
+            if (valor.length > 10) {
+                valor = `${valor.slice(0, 10)}-${valor.slice(10)}`;
+            }
+            
+            e.target.value = valor;
+        });
+
+        // Form submission
+        document.getElementById('form-agendamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const horario = document.getElementById('horario-selecionado').value;
+            if (!horario) {
+                document.getElementById('erro-horario').classList.remove('hidden');
+                return;
+            }
+
+            const dados = {
+                nome: document.getElementById('nome').value,
+                telefone: document.getElementById('telefone').value,
+                email: document.getElementById('email').value,
+                servico: document.getElementById('servico').value,
+                data: document.getElementById('data').value,
+                horario: horario,
+                observacoes: document.getElementById('observacoes').value,
+                id: Date.now()
+            };
+
+            // Salvar no localStorage
+            agendamentosSalvos.push(dados);
+            localStorage.setItem('agendamentos', JSON.stringify(agendamentosSalvos));
+
+            // Mostrar confirmação
+            mostrarConfirmacao(dados);
+            
+            // Atualizar lista de agendamentos
+            atualizarListaAgendamentos();
+        });
+
+        function mostrarConfirmacao(dados) {
+            const form = document.getElementById('form-agendamento');
+            const confirmacao = document.getElementById('confirmacao-agendamento');
+            const resumo = document.getElementById('resumo-agendamento');
+            
+            const servicosNomes = {
+                'corte-tintura': 'Corte + Tintura',
+                'escova': 'Escova Modelada',
+                'maquiagem': 'Maquiagem',
+                'manicure-pedicure': 'Manicure + Pedicure',
+                'unhas-gel': 'Unhas em Gel',
+                'limpeza-pele': 'Limpeza de Pele',
+                'massagem': 'Massagem Relaxante',
+                'spa-day': 'Spa Day Completo'
+            };
+            
+            const dataFormatada = new Date(dados.data).toLocaleDateString('pt-BR', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            resumo.innerHTML = `
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="text-gray-600">Serviço:</span>
+                    <span class="font-semibold text-gray-900">${servicosNomes[dados.servico]}</span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="text-gray-600">Data:</span>
+                    <span class="font-semibold text-gray-900 capitalize">${dataFormatada}</span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="text-gray-600">Horário:</span>
+                    <span class="font-semibold text-gray-900">${dados.horario}</span>
+                </div>
+                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                    <span class="text-gray-600">Cliente:</span>
+                    <span class="font-semibold text-gray-900">${dados.nome}</span>
+                </div>
+            `;
+            
+            form.classList.add('hidden');
+            confirmacao.classList.remove('hidden');
+            
+            // Reinitialize icons
+            lucide.createIcons();
+            
+            // Mostrar toast
+            mostrarToast('Agendamento realizado com sucesso!');
+        }
+
+        function novoAgendamento() {
+            document.getElementById('form-agendamento').reset();
+            document.getElementById('horario-selecionado').value = '';
+            document.getElementById('horario-container').classList.add('hidden');
+            document.querySelectorAll('#horarios-grid button').forEach(b => {
+                b.classList.remove('bg-rose-400', 'text-white');
+                b.classList.add('bg-white', 'text-gray-700');
+            });
+            
+            document.getElementById('form-agendamento').classList.remove('hidden');
+            document.getElementById('confirmacao-agendamento').classList.add('hidden');
+        }
+
+        function atualizarListaAgendamentos() {
+            const container = document.getElementById('meus-agendamentos');
+            const lista = document.getElementById('lista-agendamentos');
+            
+            if (agendamentosSalvos.length === 0) {
+                container.classList.add('hidden');
+                return;
+            }
+            
+            container.classList.remove('hidden');
+            lista.innerHTML = '';
+            
+            const servicosNomes = {
+                'corte-tintura': 'Corte + Tintura',
+                'escova': 'Escova',
+                'maquiagem': 'Maquiagem',
+                'manicure-pedicure': 'Manicure + Pedicure',
+                'unhas-gel': 'Unhas em Gel',
+                'limpeza-pele': 'Limpeza de Pele',
+                'massagem': 'Massagem',
+                'spa-day': 'Spa Day'
+            };
+            
+            // Mostrar apenas os 3 últimos
+            const ultimos = agendamentosSalvos.slice(-3).reverse();
+            
+            ultimos.forEach(ag => {
+                const data = new Date(ag.data);
+                const dataStr = data.toLocaleDateString('pt-BR');
+                
+                const item = document.createElement('div');
+                item.className = 'bg-white p-4 rounded-xl border border-rose-100 shadow-sm';
+                item.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="font-semibold text-gray-900">${servicosNomes[ag.servico] || ag.servico}</p>
+                            <p class="text-sm text-gray-500">${dataStr} às ${ag.horario}</p>
+                            <p class="text-sm text-gray-400 mt-1">${ag.nome}</p>
+                        </div>
+                        <span class="px-2 py-1 bg-green-100 text-green-600 text-xs rounded-full font-medium">Confirmado</span>
+                    </div>
+                    <button onclick="cancelarAgendamento(${ag.id})" class="mt-3 text-sm text-rose-500 hover:text-rose-700 font-medium">
+                        Cancelar
+                    </button>
+                `;
+                lista.appendChild(item);
+            });
+        }
+
+        function cancelarAgendamento(id) {
+            if (confirm('Deseja realmente cancelar este agendamento?')) {
+                agendamentosSalvos = agendamentosSalvos.filter(a => a.id !== id);
+                localStorage.setItem('agendamentos', JSON.stringify(agendamentosSalvos));
+                atualizarListaAgendamentos();
+                mostrarToast('Agendamento cancelado');
+                
+                // Recarregar horários se estiverem visíveis
+                const dataSelecionada = document.getElementById('data').value;
+                if (dataSelecionada) {
+                    dataInput.dispatchEvent(new Event('change'));
+                }
+            }
+        }
+
+        function mostrarToast(mensagem) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-mensagem').textContent = mensagem;
+            toast.classList.remove('translate-y-full', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-full', 'opacity-0');
+            }, 3000);
+        }
+
+        // Inicializar lista de agendamentos ao carregar
+        atualizarListaAgendamentos();
+    </script>
+<script src="https://deepsite.hf.co/deepsite-badge.js"></script>
+</body>
+</html>
